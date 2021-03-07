@@ -2,8 +2,13 @@
   "name": "webgl-and-canvas-storybook",
   "version": "0.1.0",
   "private": true,
+  "author": {
+    "name": "Jung KyuHyun",
+    "email": "ajdkfl6445@gmail.com"
+  },
+  "description": "Study Canvas and WebGL.",
   "scripts": {
-    "start": "start-storybook -p 6006 -s public",
+    "storybook": "start-storybook -p 6006 -s public",
     "test": "jest test",
     "build-storybook": "build-storybook -s public"
   },
