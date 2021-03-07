@@ -9,8 +9,8 @@
   "description": "Study Canvas and WebGL.",
   "license": "MIT",
   "scripts": {
-    "storybook": "start-storybook -p 6006 -s public",
     "test": "jest test",
+    "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -c .storybook -o public"
   },
   "eslintConfig": {
