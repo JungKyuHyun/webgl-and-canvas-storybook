@@ -8,6 +8,9 @@ Canvas, WebGL을 이용한 2D, 3D 개발 연습에 목적을 둡니다.
 
 [스토리북](https://webgl-and-canvas-storybook.vercel.app/)에서 모두 확인할 수 있습니다.
 
+![image](https://user-images.githubusercontent.com/42884032/110509923-fea6c180-8145-11eb-9f35-957e8b4d3f0a.png)
+
+
 ## How to run
 
 아래 커맨드를 `Root` 디렉토리에서 입력해 주세요.
