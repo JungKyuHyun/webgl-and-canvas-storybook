@@ -1,6 +1,7 @@
 import React from "react";
 import { Meta, Story } from "@storybook/react";
 import { Scene1 } from "./Scene1";
+import { Scene2 } from "./Scene2";
 
 export default {
   title: "Threejs/BasicScene",
@@ -33,11 +34,36 @@ export default {
       defaultValue: 30,
       control: { type: "range", min: 0, max: 300, step: 10 },
     },
+    spotLightColor: {
+      control: { type: "color" },
+    },
+    enabledShadow: {
+      defaultValue: true,
+      control: { type: "boolean" },
+    },
+    spotLightX: {
+      defaultValue: -40,
+      control: { type: "range", min: -200, max: 200, step: 10 },
+    },
+    spotLightY: {
+      defaultValue: 60,
+      control: { type: "range", min: -200, max: 200, step: 10 },
+    },
+    spotLightZ: {
+      defaultValue: -10,
+      control: { type: "range", min: 200, max: 200, step: 10 },
+    },
   },
 } as Meta;
 
-const Template: Story = (args) => {
+const Template1: Story = (args) => {
   return <Scene1 {...args} />;
 };
 
-export const scene1 = Template.bind({});
+const Template2: Story = (args) => {
+  return <Scene2 {...args} />;
+};
+
+export const scene1 = Template1.bind({});
+
+export const scene2 = Template2.bind({});
