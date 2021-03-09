@@ -1,8 +1,28 @@
-import { useEffect, useRef } from "react";
+import { FC, useEffect, useRef } from "react";
 import * as THREE from "three";
 import DomUtils from "../../../../utils/DomUtils";
 
-export const Scene1 = () => {
+type Props = {
+  fov: number;
+  near: number;
+  far: number;
+  rendererColor: string;
+  axesSize: number;
+  cameraPostionX: number;
+  cameraPostionY: number;
+  cameraPostionZ: number;
+};
+
+export const Scene1: FC<Partial<Props>> = ({
+  fov = 45,
+  near = 0.1,
+  far = 1000,
+  rendererColor = "#EEEEEE",
+  axesSize = 20,
+  cameraPostionX = -30,
+  cameraPostionY = 40,
+  cameraPostionZ = 30,
+}) => {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -13,13 +33,13 @@ export const Scene1 = () => {
     const { innerHeight, innerWidth, aspect } = DomUtils.size();
 
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(45, aspect, 0.1, 1000);
+    const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
     const renderer = new THREE.WebGLRenderer();
-    renderer.setClearColor("#EEEEEE");
+    renderer.setClearColor(rendererColor);
     renderer.setSize(innerWidth, innerHeight);
 
     // 축
-    const axes = new THREE.AxesHelper(20);
+    const axes = new THREE.AxesHelper(axesSize);
     scene.add(axes);
 
     // 배경으로 사용할 2차원 사각형
@@ -37,7 +57,7 @@ export const Scene1 = () => {
     const cubeGeometry = new THREE.BoxGeometry(4, 4, 4);
     const cubeMaterial = new THREE.MeshBasicMaterial({
       color: 0xff0000,
-      wireframe: true,
+      wireframe: true, // 이 옵션을 빼면 솔리드 객체(solid object)로 렌더링된다.
     });
     const cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
 
@@ -60,9 +80,9 @@ export const Scene1 = () => {
     scene.add(sphere);
 
     // 카메라 설정
-    camera.position.x = -30;
-    camera.position.y = 40;
-    camera.position.z = 30;
+    camera.position.x = cameraPostionX;
+    camera.position.y = cameraPostionY;
+    camera.position.z = cameraPostionZ;
     camera.lookAt(scene.position);
 
     ref.current.appendChild(renderer.domElement);
