@@ -55,7 +55,7 @@ export const Scene4: FC<Partial<Props>> = ({
   }, []);
 
   const plane = useMemo(() => {
-    return new Plane().create();
+    return new Plane(15, 0, 0);
   }, []);
 
   const camera = useMemo(() => {
@@ -87,13 +87,9 @@ export const Scene4: FC<Partial<Props>> = ({
     scene.add(axes);
 
     // 배경으로 사용할 2차원 사각형
-    plane.rotation.x = -0.5 * Math.PI;
-    plane.position.x = 15;
-    plane.position.y = 0;
-    plane.position.z = 0;
-
-    plane.receiveShadow = true;
-    scene.add(plane);
+    plane.mesh.rotation.x = -0.5 * Math.PI;
+    plane.mesh.receiveShadow = true;
+    scene.add(plane.mesh);
 
     // 정사각형
     cube.mesh.castShadow = true;

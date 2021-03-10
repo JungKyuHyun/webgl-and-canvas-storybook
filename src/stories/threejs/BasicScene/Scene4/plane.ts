@@ -1,15 +1,15 @@
-import * as THREE from 'three';
+import * as THREE from "three";
 
 export default class Plane {
-  planeGeometry;
-  planeMaterial;
+  mesh: THREE.Mesh<THREE.PlaneGeometry, THREE.MeshLambertMaterial>;
 
-  constructor() {
-    this.planeGeometry = new THREE.PlaneGeometry(60, 20);
-    this.planeMaterial = new THREE.MeshLambertMaterial({ color: "#fff" });
-  }
-
-  create() {
-    return new THREE.Mesh(this.planeGeometry, this.planeMaterial);
+  constructor(x: number, y: number, z: number) {
+    this.mesh = new THREE.Mesh(
+      new THREE.PlaneGeometry(60, 20),
+      new THREE.MeshLambertMaterial({ color: "#fff" })
+    );
+    this.mesh.position.x = x;
+    this.mesh.position.y = y;
+    this.mesh.position.z = z;
   }
 }
