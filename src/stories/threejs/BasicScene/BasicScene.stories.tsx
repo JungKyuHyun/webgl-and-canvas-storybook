@@ -5,6 +5,14 @@ import { Scene3 } from "./Scene3";
 
 export default {
   title: "Threejs/BasicScene",
+  parameters: {
+    docs: {
+      description: {
+        component:
+          "`BasicScene`은 여러 개의 하위 컴포넌트로 구성되어 있으며, 각각의 컴포넌트에서 threejs의 가장 기본적인 부분을 다룹니다.",
+      },
+    },
+  },
   argTypes: {
     fov: {
       defaultValue: 45,
