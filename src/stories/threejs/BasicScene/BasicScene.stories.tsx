@@ -46,6 +46,8 @@ export default {
     },
     axesSize: {
       defaultValue: 20,
+      description:
+        "X 축은 빨간색입니다. Y 축은 녹색입니다. Z 축은 파란색입니다.",
       control: { type: "range", min: 0, max: 50, step: 5 },
       table: {
         category: "Axes",
@@ -84,16 +86,17 @@ export default {
       control: { type: "color" },
       table: {
         category: "Light",
-        type: { summary: "number" },
-        defaultValue: { summary: "0" },
+        type: { summary: "string | number | THREE.Color" },
+        defaultValue: { summary: "undefined" },
       },
     },
     enabledShadow: {
+      description: "그림자 사용 여부",
       defaultValue: true,
       control: { type: "boolean" },
       table: {
         category: "Shadow",
-        type: { summary: "boolean | a" },
+        type: { summary: "boolean" },
         defaultValue: { summary: false },
       },
     },
