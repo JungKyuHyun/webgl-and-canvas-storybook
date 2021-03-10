@@ -1,7 +1,7 @@
-import React from "react";
 import { Meta, Story } from "@storybook/react";
 import { Scene1 } from "./Scene1";
 import { Scene2 } from "./Scene2";
+import { Scene3 } from "./Scene3";
 
 export default {
   title: "Threejs/BasicScene",
@@ -64,6 +64,12 @@ const Template2: Story = (args) => {
   return <Scene2 {...args} />;
 };
 
+const Template3: Story = (args) => {
+  return <Scene3 {...args} />;
+};
+
 export const scene1 = Template1.bind({});
 
 export const scene2 = Template2.bind({});
+
+export const scene3 = Template3.bind({});
