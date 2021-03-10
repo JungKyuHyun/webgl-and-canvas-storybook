@@ -2,6 +2,7 @@ import { Meta, Story } from "@storybook/react";
 import { Scene1 } from "./Scene1";
 import { Scene2 } from "./Scene2";
 import { Scene3 } from "./Scene3";
+import { Scene4 } from "./Scene4";
 
 export default {
   title: "Threejs/BasicScene",
@@ -150,3 +151,5 @@ scene1.argTypes = {
 export const scene2: Story = (args) => <Scene2 {...args} />;
 
 export const scene3: Story = (args) => <Scene3 {...args} />;
+
+export const scene4: Story = (args) => <Scene4 {...args} />;
