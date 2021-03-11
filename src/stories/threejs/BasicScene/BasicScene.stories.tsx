@@ -3,6 +3,7 @@ import { Scene1 } from "./Scene1";
 import { Scene2 } from "./Scene2";
 import { Scene3 } from "./Scene3";
 import { Scene4 } from "./Scene4";
+import { Scene5 } from "./Scene5";
 
 export default {
   title: "Threejs/BasicScene",
@@ -136,6 +137,26 @@ export default {
         defaultValue: { summary: "0" },
       },
     },
+    cubeRotateSpeed: {
+      defaultValue: 0.02,
+      description: "Cube의 회전 속도",
+      control: { type: "range", min: 0, max: 2, step: 0.1 },
+      table: {
+        category: "Cube",
+        type: { summary: "number" },
+        defaultValue: { summary: "0" },
+      },
+    },
+    sphereBounceSpeed: {
+      defaultValue: 0.04,
+      description: "Sphere의 바운싱 속도",
+      control: { type: "range", min: 0, max: 2, step: 0.1 },
+      table: {
+        category: "Sphere",
+        type: { summary: "number" },
+        defaultValue: { summary: "0" },
+      },
+    },
   },
 } as Meta;
 
@@ -149,7 +170,21 @@ scene1.argTypes = {
 };
 
 export const scene2: Story = (args) => <Scene2 {...args} />;
+scene2.argTypes = {
+  cubeRotateSpeed: { control: false },
+  sphereBounceSpeed: { control: false },
+};
 
 export const scene3: Story = (args) => <Scene3 {...args} />;
+scene3.argTypes = {
+  cubeRotateSpeed: { control: false },
+  sphereBounceSpeed: { control: false },
+};
 
 export const scene4: Story = (args) => <Scene4 {...args} />;
+scene4.argTypes = {
+  cubeRotateSpeed: { control: false },
+  sphereBounceSpeed: { control: false },
+};
+
+export const scene5: Story = (args) => <Scene5 {...args} />;

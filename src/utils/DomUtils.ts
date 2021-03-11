@@ -1,3 +1,5 @@
+import debounce from "lodash/debounce";
+
 export default class DomUtils {
   static useableWindow() {
     return typeof window !== "undefined";
