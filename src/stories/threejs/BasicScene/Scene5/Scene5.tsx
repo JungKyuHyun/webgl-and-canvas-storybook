@@ -1,4 +1,3 @@
-import { debounce } from "lodash";
 import { FC, useCallback, useEffect, useMemo, useRef } from "react";
 import * as THREE from "three";
 import DomUtils from "../../../../utils/DomUtils";
@@ -68,16 +67,12 @@ export const Scene5: FC<Partial<Props>> = ({
     return new THREE.PerspectiveCamera(fov, aspect, near, far);
   }, [fov, near, far]);
 
-  const resize = useMemo(
-    () =>
-      debounce(() => {
-        const { aspect, innerHeight, innerWidth } = DomUtils.size();
-        camera.aspect = aspect;
-        camera.updateProjectionMatrix();
-        renderer.setSize(innerWidth, innerHeight);
-      }, 200),
-    [camera, renderer]
-  );
+  const resize = useCallback(() => {
+    const { aspect, innerHeight, innerWidth } = DomUtils.size();
+    camera.aspect = aspect;
+    camera.updateProjectionMatrix();
+    renderer.setSize(innerWidth, innerHeight);
+  }, [camera, renderer]);
 
   const animate = useCallback(() => {
     cube.rotate(cubeRotateSpeed);
