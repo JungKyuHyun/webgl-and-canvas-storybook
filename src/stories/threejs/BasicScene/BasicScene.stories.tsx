@@ -161,6 +161,13 @@ export default {
 } as Meta;
 
 export const scene1: Story = (args) => <Scene1 {...args} />;
+scene1.parameters = {
+  docs: {
+    description: {
+      story: "최초 가장 순수한 형태의 예제 컴포넌트 개발",
+    },
+  },
+};
 scene1.argTypes = {
   spotLightX: { control: false },
   spotLightY: { control: false },
@@ -170,21 +177,53 @@ scene1.argTypes = {
 };
 
 export const scene2: Story = (args) => <Scene2 {...args} />;
+scene2.parameters = {
+  docs: {
+    description: {
+      story:
+        "`scene1`에서 추가하여 와이어프레임 제거, 그리고 더 나은 코드로 리펙토링",
+    },
+  },
+};
 scene2.argTypes = {
   cubeRotateSpeed: { control: false },
   sphereBounceSpeed: { control: false },
 };
 
 export const scene3: Story = (args) => <Scene3 {...args} />;
+scene3.parameters = {
+  docs: {
+    description: {
+      story:
+        "`scene2`에서 추가하여 회전하는 `sphere`, 그리고 더 나은 코드로 리펙토링",
+    },
+  },
+};
 scene3.argTypes = {
   cubeRotateSpeed: { control: false },
   sphereBounceSpeed: { control: false },
 };
 
 export const scene4: Story = (args) => <Scene4 {...args} />;
+scene4.parameters = {
+  docs: {
+    description: {
+      story:
+        "`scene3`에서 추가하여 바운싱된 `cube`, 그리고 더 나은 코드로 리펙토링",
+    },
+  },
+};
 scene4.argTypes = {
   cubeRotateSpeed: { control: false },
   sphereBounceSpeed: { control: false },
 };
 
 export const scene5: Story = (args) => <Scene5 {...args} />;
+scene5.parameters = {
+  docs: {
+    description: {
+      story:
+        "`scene4`에서 추가하여 화면 `resizing` 대응, 그리고 더 나은 코드로 리펙토링",
+    },
+  },
+};
