@@ -1,0 +1,66 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+
+<Meta title="Threejs/SimpleShape/Note" />
+
+# Note
+
+간단한 필기
+
+## Material
+
+- `MeshBasicMaterial`의 경우 조명의 영향을 받지 않는다.
+- `MeshLambertMaterial`의 경우 정점 조명에서만 광원을 계산한다.
+- `MeshPhongMaterial`의 경우 각 픽셀에 광원을 계산하고 반사 하이라이트까지 지원한다.
+- cf) 반사 하이라이트(`specular highlights`)란, 물체가 조명을 받을 때 물체에 나타나는 밝은 점을 의미한다.
+
+![image](https://user-images.githubusercontent.com/42884032/111060366-be499980-84df-11eb-9c27-d7f985cfe709.png)
+
+## MeshLambertMaterial
+
+- 반사 하이라이트가 없는 비광택 표면용 재질이며, 음영 모델로는 `Gouraud`를 사용하여 음영 계산을 한다. 이것은 버텍스 셰이더당 음영을 계산한다.
+
+## MeshPhongMaterial
+
+- 반사 하이라이트가 있는 반짝이는 표면을 위한 재질이며, 약간의 성능을 포기하면서 `MeshLambertMaterial`보다 더 정확한 결과를 제공하는 픽셀당 쉐이딩을 계산한다.
+- `shininess` 속성을 이용하여 반사 하이라이트의 밝기를 조절할 수 있다. 기본값은 `30`이다.
+
+![image](https://user-images.githubusercontent.com/42884032/111060596-7297ef80-84e1-11eb-99a3-921952f75fcb.png)
+
+## 왜 3개의 메테리얼이 존재하지?
+
+사실 `MeshPhongMaterial`만 이용하면 나머지 두개의 메테리얼도 모두 구현이 가능하다.
+
+![image](https://user-images.githubusercontent.com/42884032/111060666-f225be80-84e1-11eb-8d6e-29388f9c72ee.png)
+
+그럼에도 불구하고 3개의 메티리얼이 따로 존재하는 이유는 메테리얼이 정교할수록, GPU의 부담이 커지기 때문이다. 저사양 기기를 대응한다면 덜 정교한 메테리얼을 사용하여 GPU 부담을 줄이며, 복잡한 표현이 필요 없는 경우 `MeshBasicMaterial`을 이용하여 간단한 메테리얼을 구현하면 된다.
+
+## MeshToonMaterial
+
+- 이름에서 알 수 있듯이 `MeshToonMaterial`을 사용하여 투톤을 띄워 카툰같은 느낌을 줄 수 있다.
+- 이렇게 할 수 있는 이유는 `MeshPhongMaterial`과 대부분 유사하나, `MeshPhongMaterial`은 부드럽게 쉐이딩하지만 `MeshToonMaterial`은 그라디언트 맵(`gradient map`)을 사용하기 때문이다.
+- 기본설정은 처음 70%까지는 밝고 100%까지는 어두운 그라디언트 맵을 사용한다. 물론 직접 지정도 가능하다.
+
+## MeshPhysicalMaterial
+
+`MeshPhysicalMaterial`은 `MeshStandarMaterial`과 기본적으로 각지만, 0부터 1가지의 `clearcoat`의 속성으로 표현의 코팅 세기를 설정할 수 있으며, `clearoatRoughness` 속성으로 코딩의 거침 정도까지 설정할 수 있다.
+
+## MeshDepthMaterial
+
+각 픽셀의 깊이를 렌더링한다. 카메라의 마이너스 `near`에 위치한 픽셀은 0으로, 마이너스 `far`에 위치한 픽셀은 1로 렌더링한다.
+
+## MeshNormalMaterial
+
+- `MeshNormalMaterial`은 `geometry`의 법선(`normals`)을 보여준다. 여기서 법선이란 특정한 삼각형이나 픽셀이 가리키는 방향을 의미하며, `MeshNormalMaterial`은 카메라를 기반으로 법선을 렌더링한다.
+- x축은 빨강, y축은 초록, z축은 파랑
+- 다시말해 오른쪽 면은 분홍, 왼쪽 면은 청녹, 아래쪽 면은 자주, 정면은 연보라 색으로 보인다.
+
+## ShaderMaterial과 RawShaderMaterial
+
+메테리얼을 커스텀할 때만 쓰이는 것으로, 둘의 차니는 `ShaderMaterial`은 Threejs의 쉐이더 시스템을 이용하고 `RawShaderMaterial`은 이용하지 않는다는 점이다. 이건 나중에 다시 살펴보자.
+
+## Meterial의 공통 properties
+
+- `specular`: 재질(meterial)의 반사광 색상
+- `flatShading`: 물체를 각지게(faceted) 표현할지 여부이다. 기본값은 `false`
+- `side`: 어떤 면을 렌더링할지 여부이다. `THREE.FrontSide(앞면)`, `THREE.BackSide(뒷면)`, `THREE.DoubleSide(양면)`를 지정할 수 있다. 렌더링하는 객체가 불투명 고체라면 대부분 필요없다.
+- `needsUpdate`: 사용할 일이 많지 않는 속성이다. 재질을 바꿀 때는 많은 자원이 들어가기 때문에 `Threejs`는 처음 한 번만 재질의 설정을 적용한다. 만약 런타임에 바꿔야 할 경우에만 이 속성을 `true`로 바꿔준다.
