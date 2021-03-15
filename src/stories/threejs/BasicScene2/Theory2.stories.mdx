@@ -7,3 +7,19 @@ import { Meta } from "@storybook/addon-docs/blocks";
 앞에 예제에서 대략적인 감은 잡아봤다. `scene`을 만들고 그 객체에 여러 객체 및 효과를 추가하는 방식이었다.
 
 이번에는 조금 더 자세하게 알아보자.
+
+<br />
+
+## PlaneGeometry
+
+- `평면 도형`을 생성하기 위한 클래스.
+
+```typescript
+PlaneGeometry(width: Float = 1, height: Float = 1, widthSegments: Integer = 1, heightSegments: Integer = 1)
+```
+
+- `width`: x축 너비
+- `height`: y축 높이
+- `widthSegments`: 측면 너비를 따라 분할 된 직사각형면의 수
+- `heightSegments`: 측면 높이를 따라 분할 된 직사각형면의 수
+- `PlaneGeometry.parameters`: 각 생성자 매개 변수에 대한 속성이있는 객체. 인스턴스화 후 수정하면 지오메트리가 변경되지 않는다.
